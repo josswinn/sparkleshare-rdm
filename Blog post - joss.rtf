@@ -1,0 +1,104 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf320
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset0 LucidaGrande;}
+{\colortbl;\red255\green255\blue255;\red49\green49\blue49;\red255\green255\blue255;\red8\green54\blue113;
+\red232\green233\blue232;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{circle\}}{\leveltext\leveltemplateid1\'01\uc0\u9702 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww12200\viewh17140\viewkind1
+\deftab720
+\pard\pardeftab720\sl400
+
+\f0\fs26 \cf2 \cb3 I\'92m at the {\field{\*\fldinst{HYPERLINK "http://devcsi.ukoln.ac.uk/upcoming-events/mrd-hack-days/"}}{\fldrslt \cf4 \ul \ulc4 DevCSI #mrdHackday}} with about 30 other people (including Nick and Harry from Orbital) interested in hacking around research data. One of the user requirements identified among some MRD projects is the need for personal and shared networked workspaces i.e. a desktop drive for dumping, organising and sharing research data.\
+In our recent {\field{\*\fldinst{HYPERLINK "http://orbital.blogs.lincoln.ac.uk/2012/04/30/data-assets-framework-survey-summary/"}}{\fldrslt \cf4 \ul \ulc4 survey}} of researchers at Lincoln, we learned that many academics (myself included!) are using {\field{\*\fldinst{HYPERLINK "http://dropbox.com/"}}{\fldrslt \cf4 \ul \ulc4 Dropbox}} as a way to share project files and research data among partners. It has the advantage over the FTP \'91H Drive\'92 that Lincoln staff are given in that Dropbox offers more storage and folders/files can be shared among people both inside and outside the university. The first couple of GB of storage is free and the pricing is clear when you need more space.\
+Just as researchers surveyed said they were using Dropbox, they also acknowledged in the survey that this isn\'92t an ideal situation. It\'92s being held by a third-party service, it\'92s runs unreliably on our university desktops, there\'92s a 30 day version history, but there\'92s no information about what changes were made and no way to compare versions. Part of the Orbital implementation plan is to provide an alternative to Dropbox and other similar network drives to Lincoln researchers. One that (probably) runs over HTTP, does version control properly, can be accessed through a web interface if necessary, and can be shared securely. The{\field{\*\fldinst{HYPERLINK "http://www.dataflow.ox.ac.uk/"}}{\fldrslt \cf4 \ul \ulc4 DataFlow}} project at Oxford has gone down the route of using WebDav for remote file storage and sharing and it\'92s an area we need to investigate, too. There is a WebDav {\field{\*\fldinst{HYPERLINK "https://tools.ietf.org/html/rfc3253"}}{\fldrslt \cf4 \ul \ulc4 extension}} that provides versioning, too.\
+Of all the comments by researchers who responded to our survey, the clearest message which united them was for more, secure, backed up, and flexible storage. Within Orbital, we\'92ve been thinking about how Git (or a similar versioned source code repository tool) could be used to provide this functionality. Git is a proven and popular repository tool for managing text files, developed for the Linux kernel project and the basis for the popular Github \'91social network\'92 for developers. {\field{\*\fldinst{HYPERLINK "http://people.bath.ac.uk/jc619/"}}{\fldrslt \cf4 \ul \ulc4 Jez Cope}} from Bristol mentioned that there was an open source desktop tool called SparkleShare that provides a folder on your PC, just like Dropbox, Google Drive and Ubuntu One do, and uses Git as its backend. Jez and I have been playing with it this afternoon, having installed the Mac client on our laptops and it shows some promise but also needs some further consideration and work for our immediate needs.\
+\pard\pardeftab720\sl720
+
+\b\fs48 \cf2 SparkleShare for RDM\
+\pard\pardeftab720\sl400
+
+\fs26 \cf2 Pros
+\b0 \
+Multi platform GUI client\
+Easy to install\
+Relatively mature, actively maintained open source project\
+Version control built into backend (Git)\
+Notifications of changes to folder contents\
+
+\b Cons
+\b0 \
+Git isn\'92t built for handling large, binary files\
+Version control not built into desktop client (shows a history of changes, but no roll-back functionality)\
+Sharing folders not built into desktop client\
+
+\b Next steps?
+\b0 \
+If Git isn\'92t the right choice of backend, SparkleShare {\field{\*\fldinst{HYPERLINK "https://github.com/hbons/SparkleShare/wiki/Implementing-a-backend"}}{\fldrslt \cf4 \ul \ulc4 can use something else}}. It also {\field{\*\fldinst{HYPERLINK "https://github.com/hbons/SparkleShare/wiki/Using-Gitolite-repositories"}}{\fldrslt \cf4 \ul \ulc4 works with gitolite}}, which is a tool for managing git repositories. The DATUM MRD project {\field{\*\fldinst{HYPERLINK "http://datumrdm.blogspot.co.uk/2012/03/bazaar-for-version-control.html"}}{\fldrslt \cf4 \ul \ulc4 is using Bazaar}} for a similar purpose (they favoured it because of good integration with Windows desktop). \'a0Whatever the underlying versioned repository technology, SparkleShare currently lacks detailed versioning information and roll-back functionality, which 
+\i is
+\i0 \'a0in\'a0the backend repository. Presumably it could be surfaced and further functionality built around it. Likewise, a more convenient way to share repository folders with other people could be added to the client. Currently, you need to share the repository with them outside of the client.\
+\pard\pardeftab720\sl720
+
+\b\fs48 \cf2 Windows Explorer integration\
+\pard\pardeftab720\sl400
+
+\b0\fs26 \cf2 Most researchers are using Windows as their OS, so it\'92s worth looking at the integration with Windows Explorer that other tools use. The DATUM project {\field{\*\fldinst{HYPERLINK "http://datumrdm.blogspot.co.uk/2012/03/bazaar-for-version-control.html"}}{\fldrslt \cf4 \ul \ulc4 selected Bazaar}} over Git because they found the integration ({\field{\*\fldinst{HYPERLINK "http://wiki.bazaar.canonical.com/TortoiseBzr"}}{\fldrslt \cf4 \ul \ulc4 TortoiseBZR}}) with Explorer to be better. I have found the {\field{\*\fldinst{HYPERLINK "http://msysgit.github.com/"}}{\fldrslt \cf4 \ul \ulc4 standard Git tools}}\'a0for Windows Explorer to be pretty good, too. Neither provide the transparent functionality of SparkleShare or Dropbox.\
+\pard\pardeftab720\sl720
+
+\b\fs48 \cf2 Handling big files\
+\pard\pardeftab720\sl400
+
+\b0\fs26 \cf2 \cb5 The git architecture simply sucks for big objects. It was discussed somewhat durign the early stages, but a lot of it really is pretty fundamental. The fact that all the operations work on a full object, and the delta\'92s are (on purpose) just a very specific and limited kind of size compression is just very ingrained\'85\'a0Personally, I think the answer is \'93git is good for lots of small files\'94. \'a0It\'92s very much what git was designed for, and the fact that it doesn\'92t\'a0work for everything is a trade-off for the things it _does_ work well for.\
+\pard\pardeftab720\sl400
+\cf2 \cb3 So {\field{\*\fldinst{HYPERLINK "http://kerneltrap.org/mailarchive/git/2006/2/8/200591"}}{\fldrslt \cf4 \ul \ulc4 says}} Linus Torvalds, the creator of Git (and the Linux kernel). Git and other version controlled repository software were not designed to handle big files. However, there are other Git-based and alternative projects that are addressing this. {\field{\*\fldinst{HYPERLINK "http://git-annex.branchable.com/"}}{\fldrslt \cf4 \ul \ulc4 git-annex}}\'a0is a mature well-documented and maintained project that\
+\pard\pardeftab720\sl400
+\cf2 \cb5 allows managing files with git, without checking the file contents into git. While that may seem paradoxical, it is useful when dealing with files larger than git can currently easily handle, whether due to limitations in memory, time, or disk space. Even without file content tracking, being able to manage files with git, move files around and delete files with versioned directory trees, and use branches and distributed clones, are all very handy reasons to use git. And annexed files can co-exist in the same git repository with regularly versioned files, which is convenient for maintaining documents, Makefiles, etc that are associated with annexed files but that benefit from full revision control.\
+\pard\pardeftab720\sl400
+\cf2 \cb3 git-annex includes a use case on its home page that speaks to the RDM domain:\
+\pard\pardeftab720\sl400
+
+\b \cf2 \cb5 use case: The Archivist
+\b0 \
+Bob has many drives to archive his data, most of them kept offline, in a safe place.\
+With git-annex, Bob has a single directory tree that includes all his files, even if their content is being stored offline. He can reorganize his files using that tree, committing new versions to git, without worry about accidentally deleting anything.\
+When Bob needs access to some files, git-annex can tell him which drive(s) they\'92re on, and easily make them available. Indeed, every drive knows what is on every other drive. {\field{\*\fldinst{HYPERLINK "http://git-annex.branchable.com/location_tracking/"}}{\fldrslt 
+\fs20 \cf4 \ul \ulc4 more about location tracking}}\
+Bob thinks long-term, and so he appreciates that git-annex uses a simple repository format. He knows his files will be accessible in the future even if the world has forgotten about git-annex and git. {\field{\*\fldinst{HYPERLINK "http://git-annex.branchable.com/future_proofing/"}}{\fldrslt 
+\fs20 \cf4 \ul \ulc4 more about future-proofing}}\
+Run in a cron job, git-annex adds new files to archival drives at night. It also helps Bob keep track of intentional, and unintentional copies of files, and logs information he can use to decide when it\'92s time to duplicate the content of old drives. {\field{\*\fldinst{HYPERLINK "http://git-annex.branchable.com/copies/"}}{\fldrslt 
+\fs20 \cf4 \ul \ulc4 more about backup copies}}\
+\pard\pardeftab720\sl400
+\cf2 \cb3 The git-annex website has a useful {\field{\*\fldinst{HYPERLINK "http://git-annex.branchable.com/not/"}}{\fldrslt \cf4 \ul \ulc4 page}} that discusses what it is 
+\i not
+\i0 \'a0and it points to {\field{\*\fldinst{HYPERLINK "https://github.com/chmduquesne/sharebox-fs"}}{\fldrslt \cf4 \ul \ulc4 Sharebox}} as a FUSE filesystem built on top of git-annex. The project doesn\'92t look as mature as SparkleShare, but it\'92s good to see work being done on this, as the {\field{\*\fldinst{HYPERLINK "http://lists.madduck.net/pipermail/vcs-home/2011-March/000351.html"}}{\fldrslt \cf4 \ul \ulc4 use case for Sharebox}}\'a0is very close to what I think several RDM projects are looking for. The git-annex website also points to other projects that are worth considering:\
+\pard\pardeftab720\sl400
+\cf2 \cb5 git-annex is more than just a workaround for git limitations that might eventually be fixed by efforts like\'a0{\field{\*\fldinst{HYPERLINK "http://caca.zoy.org/wiki/git-bigfiles"}}{\fldrslt \cf4 \ul \ulc4 git-bigfiles}}.\
+\pard\pardeftab720\sl400
+{\field{\*\fldinst{HYPERLINK "http://caca.zoy.org/wiki/git-bigfiles"}}{\fldrslt \cf4 \cb3 \ul \ulc4 git-bigfiles}}\cb3 \'a0does not tackle the same use cases that SparkleShare and Sharebox are focused on, but could provide the backend to such a tool.\
+\pard\pardeftab720\sl400
+{\field{\*\fldinst{HYPERLINK "https://github.com/schacon/git-media"}}{\fldrslt \cf4 \cb5 \ul \ulc4 git-media}}\cb5  has the advantage of using git smudge filters rather than git-annex\'92s pile of symlinks, and it may be a tighter fit for certain situations. It lacks git-annex\'92s support for widely distributed storage, using only a single backend data store. It also does not support partial checkouts of file contents, like git-annex does.\
+\pard\pardeftab720\sl400
+\cf2 \cb3 git-media is also a command-line tool and therefore provides only part of the solution to a \'91Dropbox alternative\'92 for big files. It doesn\'92t look like there\'92s been very much activity on the project in the last couple of years.\
+\pard\pardeftab720\sl400
+{\field{\*\fldinst{HYPERLINK "https://code.google.com/p/boar/"}}{\fldrslt \cf4 \cb5 \ul \ulc4 Boar}}\cb5  implements its own version control system, rather than simply embracing and extending git. And while boar supports distributed clones of a repository, it does not support keeping different files in different clones of the same repository, which git-annex does, and is an important feature for large-scale archiving.\
+\pard\pardeftab720\sl400
+\cf2 \cb3 Boar does not use git, but is an alternative \'93version control and backup for photos, videos and other binary files.\'94 It is not a distributed version control system either, but \'93does however work well with repositories on mapped network file systems, such as Windows shares and NFS.\'94\'a0The {\field{\*\fldinst{HYPERLINK "https://code.google.com/p/boar/wiki/Rationale"}}{\fldrslt \cf4 \ul \ulc4 rationale}}\'a0for Boar is worth reading as it addresses many of the problems found in the RDM domain. It\'92s a well-maintained and well documented project, which, like git-annex, was clearly written to tackle genuine archival problems.\
+\pard\pardeftab720\sl400
+\cf2 \cb5 Boar aims to be the perfect way to make sure your most important digital information, like pictures, movies and documents, are stored safely.\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl400
+\ls1\ilvl0\cf2 {\listtext	
+\f1 \uc0\u9702 
+\f0 	}Boar makes it possible for you to restore any or all of your files from any point in time.\
+{\listtext	
+\f1 \uc0\u9702 
+\f0 	}Boar makes it easy to maintain verified backups of your data, including file history.\
+{\listtext	
+\f1 \uc0\u9702 
+\f0 	}Boar imposes no limits on file or repository sizes.\
+{\listtext	
+\f1 \uc0\u9702 
+\f0 	}Using boar is an effective way to prevent data loss due to human or machine error.\
+\pard\pardeftab720\sl400
+\cf2 If you are familiar with vcs software such as Subversion, you might think of boar as \'93version control for large binary files\'94.\
+\pard\pardeftab720\sl400
+\cf2 \cb3 This sounds like an ideal tool for expert users willing to use the command line for managing large research datasets and binary files and it would be worth looking at how much work it would take to write \'a0GUI client or Windows Explorer integration as an alternative to Dropbox.\
+}
