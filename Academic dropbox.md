@@ -46,5 +46,9 @@ https://github.com/chmduquesne/sharebox-fs
 
 http://caca.zoy.org/wiki/git-bigfiles
 
+### git-media
+
+https://github.com/schacon/git-media
+
 
 
