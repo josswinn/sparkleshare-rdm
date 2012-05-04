@@ -10,9 +10,17 @@ What is needed is a tool to transparently synchronise their local and network st
 
 ## Problems
 
+### Metadata
+
 * How do you get metadata into the system?
+
+### Large file support
+
 * How does it deal with large binary files?
 * What happens if you disconnect halfway through a sync?
+
+### Conflict resolution
+
 * What happens to files with conflicting changes?
 
 ## Existing solutions that might work
@@ -58,5 +66,5 @@ https://code.google.com/p/boar/
 
 http://mercurial.selenic.com/wiki/LargefilesExtension
 
-
+### Oxygen Cloud
 
