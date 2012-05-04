@@ -1,3 +1,5 @@
+http://blogs.bath.ac.uk/research360/2012/05/mrd-hack-days-academic-dropbox/
+
 # Academic dropbox
 
 ## The problem
@@ -72,6 +74,26 @@ http://rsync.samba.org/
 * Syncs in one direction only, so full synchronisation requires two runs, one in each direction
 * Command line tool has many complex options, and the available GUIs only go a small way to improve this, so it can be difficult for non-technical users to understand
 
+### Git (and other distributed version control systems)
+
+http://git-scm.com/
+
+#### Pros
+
+* 
+
+#### Cons
+
+
+
+### Git-bigfiles
+
+http://caca.zoy.org/wiki/git-bigfiles
+
+### git-media
+
+https://github.com/schacon/git-media
+
 ### SparkleShare
 
 http://sparkleshare.org/
@@ -88,13 +110,13 @@ http://git-annex.branchable.com/
 
 https://github.com/chmduquesne/sharebox-fs
 
-### Git-bigfiles
+#### Pros
 
-http://caca.zoy.org/wiki/git-bigfiles
+*
 
-### git-media
+#### Cons
 
-https://github.com/schacon/git-media
+* 
 
 ### Boar
 
