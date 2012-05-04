@@ -4,6 +4,8 @@ http://orbital.blogs.lincoln.ac.uk/2012/05/04/shared-version…network-drives/
 
 # Academic dropbox
 
+This post emerged from discussions at the JISC MRD Hack Days, particularly with Joss Winn of the University of Lincoln's Centre for Educational Research and Development. The event brought together developers and data management experts for two intensive days to discuss and prototype tools for research data management.
+
 ## The problem
 
 The majority of research users store the majority of their live data on local disks, with little or no redundancy, leaving them open to data loss through accident or theft. To solve this problem, we provide research users with high resilience, high performance, high capacity network storage, but in spite of these advantages, they often don't use it as well as they might.
@@ -30,21 +32,25 @@ Control of the storage locations on their own is not sufficient. If data is sent
 
 Many of the files which researchers routinely work with may be tens or hundreds of megabytes, or in some cases gigabytes or terabytes. Clearly, there's a limit to this - it's reasonable to expect that researchers will have to manage files of a gigabyte or more differently. But a suitable solution should at least work well for files of tens or hundreds of megabytes.
 
-Two things may be important here. First, the user needs feedback about the progress of a sync so that they aren't surprised when changes they were expecting haven't propagated yet. Second, the tool needs to gracefully handle a user cancellation or a dropped connection without losing or corrupting data. Ideally, if this happens it should be able to resume where it left off.
+Two important factors spring to mind here. First, the user needs feedback about the progress of a sync so that they aren't surprised when changes they were expecting haven't propagated yet. Second, the tool needs to gracefully handle a user cancellation or a dropped connection without losing or corrupting data. Ideally, if this happens it should be able to resume where it left off.
 
 ### Conflict resolution
 
-
+Once you have two copies of your files, you have two different places to modify them, giving you the possibility of making different changes to the same file prior to synchronising. This becomes even more likely when you are sharing the same files between multiple users.
 
 ### Metadata
 
-Storing metadata along with data for later (perhaps automated) deposit in a repository is a core research data management practice. If a dedicated "Academic Dropbox" tool was created, it may be possible to 
+Storing metadata along with data for later (perhaps automated) deposit in a repository is a core research data management practice. It tends to be readily available only when the data is created, but often only useful when data is finally published or archived. With a dedicated "Academic Dropbox", it may be possible for users to associate metadata directly files at creation time, and then keep that metadata with the file throughout its life through to deposit in an archive.
 
 ## Existing solutions that might work
 
+Here is a whistlestop tour of some of the options we dug up
+
 ### Unison
 
-http://www.cis.upenn.edu/~bcpierce/unison/
+<http://www.cis.upenn.edu/~bcpierce/unison/>
+
+*I (Jez) use this daily.*
 
 #### Pros
 
@@ -62,7 +68,7 @@ http://www.cis.upenn.edu/~bcpierce/unison/
 
 ### Rsync
 
-http://rsync.samba.org/
+<http://rsync.samba.org/>
 
 #### Pros
 
@@ -76,60 +82,69 @@ http://rsync.samba.org/
 * Syncs in one direction only, so full synchronisation requires two runs, one in each direction
 * Command line tool has many complex options, and the available GUIs only go a small way to improve this, so it can be difficult for non-technical users to understand
 
-### Git (and other distributed version control systems)
+### Git and other distributed version control systems (DVCS)
 
-http://git-scm.com/
+<http://git-scm.com/>
+
+*Both Joss and I (Jez) use this daily.*
 
 #### Pros
 
-* 
+* Can transfer files over an encrypted SSH or HTTPS connection
+* Outstanding conflict resolution by intelligent merging of files
+* Support for common software development activities such as branching (e.g. to make experimental changes)
 
 #### Cons
 
+* All actions require manual running of commands, either via a command line or a GUI, so requires quite a major change to the user's workflow
+* Merging only works well for text-based file formats, though it is possible with some work to use alternative merge tools for, say, Word documents
+* Poor handling of large binary files generally, although extensions are available to mitigate this (see below)
 
+### Large file extensisons to DVCS
 
-### Git-bigfiles
+E.g.  git-bigfiles <http://caca.zoy.org/wiki/git-bigfiles>, git-media <https://github.com/schacon/git-media>, git-annex <http://git-annex.branchable.com/>, mercurial large files extension <http://mercurial.selenic.com/wiki/LargefilesExtension>
 
-http://caca.zoy.org/wiki/git-bigfiles
+#### Pros
 
-### git-media
+* Similar to DVCS (above), but vastly improved handling of large binary files (reduced memory requirement, for example)
 
-https://github.com/schacon/git-media
+#### Cons
+
+* Similar to DVCS, but requires additional configuration
 
 ### SparkleShare
 
-http://sparkleshare.org/
-
-* Works a lot like Dropbox
-* (Currently) requires a Git repository
-* Could potentially build alternative backends
-
-### Git-annex
-
-http://git-annex.branchable.com/
-
-### Sharebox
-
-https://github.com/chmduquesne/sharebox-fs
+<http://sparkleshare.org/>
 
 #### Pros
 
-*
+* Very little configuration required to achieve similar results to Dropbox
+* Can store data anywhere a Git repository can be placed but there is potential to build alternative storage backends
+* Git features not exposed by the SparkleShare interface can be accessed using other git-based tools
 
 #### Cons
 
-* 
+* Software is very new and seems unstable (it crashed a few times for me under Mac)
+
+### Sharebox
+
+<https://github.com/chmduquesne/sharebox-fs>
+
+#### Pros
+
+* Implemented as a filesystem, so completely transparent to the user once installed
+* Uses git as a backend, so shares many of its advantages, including the ability to transfer data in encrypted forms
+
+#### Cons
+
+* Still very early in development so difficult to get working and only available on Linux
 
 ### Boar
 
-https://code.google.com/p/boar/
-
-### Mercurial large files extension
-
-http://mercurial.selenic.com/wiki/LargefilesExtension
+<https://code.google.com/p/boar/>
 
 ### Oxygen Cloud
 
-https://oxygencloud.com/
+<https://oxygencloud.com/>
 
 * Commercial offering
