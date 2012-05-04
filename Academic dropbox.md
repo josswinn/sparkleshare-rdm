@@ -38,5 +38,9 @@ What is needed is a tool to transparently synchronise their local and network st
 
 http://git-annex.branchable.com/
 
-### 
+### Sharebox
+
+https://github.com/chmduquesne/sharebox-fs
+
+
 
