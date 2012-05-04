@@ -34,5 +34,9 @@ What is needed is a tool to transparently synchronise their local and network st
 * (Currently) requires a Git repository
 * Could potentially build alternative backends
 
+### Git-annex
+
+http://git-annex.branchable.com/
+
 ### 
 
