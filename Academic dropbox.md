@@ -54,5 +54,9 @@ https://github.com/schacon/git-media
 
 https://code.google.com/p/boar/
 
+### Mercurial large files extension
+
+http://mercurial.selenic.com/wiki/LargefilesExtension
+
 
 
